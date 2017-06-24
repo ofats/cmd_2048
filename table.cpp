@@ -35,12 +35,13 @@ void table_::draw() const {
     for (int x = 0; x < DIM; ++x) {
         for (int y = 0; y < DIM; ++y)
             std::cout << NUM_TO_CAGE_MAPPER.find(_matrix[x][y])->second << "|";
-        std::cout << "\n----|----|----|----\n";
+        std::cout << "\n----|----|----|----|\n";
     }
 }
 
 // -x
 void table_::up_move() {
+    bool was_shift = false;
     for (int y = 0; y < DIM; ++y)
         for (int x = 0; x < DIM; ++x) {
             if (_matrix[x][y] == 0) {
@@ -48,6 +49,7 @@ void table_::up_move() {
                     if (_matrix[xx][y] != 0) {
                         _matrix[x][y] = _matrix[xx][y];
                         _matrix[xx][y] = 0;
+                        was_shift = true;
                         break;
                     }
             }
@@ -56,11 +58,12 @@ void table_::up_move() {
                     if (_matrix[xx][y] == _matrix[x][y]) {
                         ++_matrix[x][y];
                         _matrix[xx][y] = 0;
+                        was_shift = true;
                         break;
                     }
             }
         }
-    cage_gen();
+    if (was_shift) cage_gen();
 }
 
 // +x
@@ -72,6 +75,7 @@ void table_::down_move() {
                     if (_matrix[xx][y] != 0) {
                         _matrix[x][y] = _matrix[xx][y];
                         _matrix[xx][y] = 0;
+                        was_shift = true;
                         break;
                     }
             }
@@ -80,11 +84,12 @@ void table_::down_move() {
                     if (_matrix[xx][y] == _matrix[x][y]) {
                         ++_matrix[x][y];
                         _matrix[xx][y] = 0;
+                        was_shift = true;
                         break;
                     }
             }
         }
-    cage_gen();
+    if (was_shift) cage_gen();
 }
 
 // -y
@@ -96,6 +101,7 @@ void table_::left_move() {
                     if (_matrix[x][yy] != 0) {
                         _matrix[x][y] = _matrix[x][yy];
                         _matrix[x][yy] = 0;
+                        was_shift = true;
                         break;
                     }
             }
@@ -104,11 +110,12 @@ void table_::left_move() {
                     if (_matrix[x][yy] == _matrix[x][y]) {
                         ++_matrix[x][y];
                         _matrix[x][yy] = 0;
+                        was_shift = true;
                         break;
                     }
             }
         }
-    cage_gen();
+    if (was_shift) cage_gen();
 }
 
 // +y
@@ -120,6 +127,7 @@ void table_::right_move() {
                     if (_matrix[x][yy] != 0) {
                         _matrix[x][y] = _matrix[x][yy];
                         _matrix[x][yy] = 0;
+                        was_shift = true;
                         break;
                     }
             }
@@ -128,11 +136,12 @@ void table_::right_move() {
                     if (_matrix[x][yy] == _matrix[x][y]) {
                         ++_matrix[x][y];
                         _matrix[x][yy] = 0;
+                        was_shift = true;
                         break;
                     }
             }
         }
-    cage_gen();
+    if (was_shift) cage_gen();
 }
 
 void table_::clear() {

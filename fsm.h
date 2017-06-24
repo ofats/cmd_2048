@@ -16,7 +16,7 @@ public:
         int state,
         const std::string &symbol,
         int next_state,
-        std::function <void()> action = [](){}
+        std::function <void()> action = []{}
     ); 
 
     bool try_transit(const std::string &symbol) const;
@@ -26,7 +26,16 @@ public:
     int get_state() const;
 
 protected:
-    std::unordered_map < int, std::unordered_map < std::string, std::pair <int, std::function <void()> > > > _t_table;
+    std::unordered_map<
+        int, 
+        std::unordered_map<
+            std::string, 
+            std::pair<
+                int, 
+                std::function<void()>
+            >
+        >
+    > _t_table;
     int _init_state;
     int _state;
 
