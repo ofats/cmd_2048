@@ -68,6 +68,7 @@ void table_::up_move() {
 
 // +x
 void table_::down_move() {
+    bool was_shift = false;
     for (int y = 0; y < DIM; ++y)
         for (int x = DIM - 1; x >= 0; --x) {
             if (_matrix[x][y] == 0) {
@@ -94,6 +95,7 @@ void table_::down_move() {
 
 // -y
 void table_::left_move() {
+    bool was_shift = false;
     for (int x = 0; x < DIM; ++x)
         for (int y = 0; y < DIM; ++y) {
             if (_matrix[x][y] == 0) {
@@ -120,6 +122,7 @@ void table_::left_move() {
 
 // +y
 void table_::right_move() {
+    bool was_shift = false;
     for (int x = 0; x < DIM; ++x)
         for (int y = DIM - 1; y >= 0; --y) {
             if (_matrix[x][y] == 0) {
