@@ -9,9 +9,13 @@ game_::game_() : _fsm(GameState::MENU), _table() {
     _fsm.add_transition(GameState::MENU, "exit",  GameState::EXIT);
     _fsm.add_transition(GameState::GAME, "exit",  GameState::MENU, [this](){ to_menu(); });
     _fsm.add_transition(GameState::GAME, "up",    GameState::GAME, [this](){ up_move(); });
+    _fsm.add_transition(GameState::GAME, "u",    GameState::GAME, [this](){ up_move(); });
     _fsm.add_transition(GameState::GAME, "down",  GameState::GAME, [this](){ down_move(); });
+    _fsm.add_transition(GameState::GAME, "d",  GameState::GAME, [this](){ down_move(); });
     _fsm.add_transition(GameState::GAME, "left",  GameState::GAME, [this](){ left_move(); });
+    _fsm.add_transition(GameState::GAME, "l",  GameState::GAME, [this](){ left_move(); });
     _fsm.add_transition(GameState::GAME, "right", GameState::GAME, [this](){ right_move(); });
+    _fsm.add_transition(GameState::GAME, "r", GameState::GAME, [this](){ right_move(); });
 }
 
 bool game_::input(const std::string &command) {

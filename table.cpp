@@ -34,8 +34,8 @@ table_::table_() {
 void table_::draw() const {
     for (int x = 0; x < DIM; ++x) {
         for (int y = 0; y < DIM; ++y)
-            std::cout << NUM_TO_CAGE_MAPPER.find(_matrix[x][y])->second;
-        std::cout << "\n\n";
+            std::cout << NUM_TO_CAGE_MAPPER.find(_matrix[x][y])->second << "|";
+        std::cout << "\n----|----|----|----\n";
     }
 }
 
